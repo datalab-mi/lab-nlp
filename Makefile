@@ -1,5 +1,10 @@
 export IMAGE_NAME=lab-nlp
 export APP_PATH := $(shell pwd)
+export VERSION := v0.5
+export USER := $(shell whoami)
+export NB_GPUS := 1
+
+# build locally the docker image
 build:
 	docker build -t $(IMAGE_NAME) .
 run-locally:build
@@ -7,6 +12,7 @@ run-locally:build
 
 deploy-job:
 	ovhai job run \
-	--gpu 1 \
-	--name lab-nlp-halting-bloembergen \
-	docker.pkg.github.com/datalab-mi/lab-nlp/lab-nlp:v0.1
+		--gpu ${NB_GPUS} \
+		--name ${IMAGE_NAME}-${USER} \
+		--volume lab-nlp@bhs:/data:rw \
+		ghcr.io/datalab-mi/${IMAGE_NAME}:${VERSION}
