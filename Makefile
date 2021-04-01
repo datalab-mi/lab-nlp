@@ -3,7 +3,7 @@ export APP_PATH := $(shell pwd)
 export VERSION := main#v0.5
 export USER := $(shell whoami)
 export NB_GPUS := 1
-export REGION := bhs
+export REGION := gra
 # build locally the docker image
 build:
 	docker build -t $(IMAGE_NAME) .
@@ -15,6 +15,6 @@ deploy-job:
 		--gpu ${NB_GPUS} \
 		--name ${IMAGE_NAME}-${USER} \
 		--label user=${USER}\
-		--volume lab-nlp-data@${REGION}:/data:rw \
+		--volume lab-nlp-data@${REGION}:/workspace/data:rw \
 		--volume lab-nlp-notebook@${REGION}:/workspace/notebook:rw \
 		ghcr.io/datalab-mi/${IMAGE_NAME}:${VERSION}
