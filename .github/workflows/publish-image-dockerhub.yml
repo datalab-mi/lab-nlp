@@ -4,8 +4,8 @@ on:
     branches:
       - main
 jobs:
-  push_to_registries:
-    name: Push Docker image to multiple registries
+  push_to_registry:
+    name: Push Docker image Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -23,11 +23,3 @@ jobs:
         with:
           push: true
           tags: datalabmi/lab-nlp:latest
-      - name: Push to GitHub Container Registery
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: ghcr.io
-          repository: datalab-mi/lab-nlp
-          tag_with_ref: true
