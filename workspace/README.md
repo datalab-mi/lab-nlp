@@ -1,7 +1,7 @@
 # lab-nlp
 Bienvenu dans l'espace lab nlp, équipé de GPU, de _pytorch_, _transformers_ et _sentence-tronsformers_.
 
-Le container dans lequel vous travaillez à été génerer automatiquement à chaque release du [dépot](https://github.com/datalab-mi/lab-nlp). L'image docker est stockée [ici](https://github.com/orgs/datalab-mi/packages/container/package/lab-nlp).
+Le container dans lequel vous travaillez à été génerer automatiquement à chaque push sur main du [dépot](https://github.com/datalab-mi/lab-nlp). L'image docker est stockée [ici](https://github.com/orgs/datalab-mi/packages/container/package/lab-nlp).
 
 # Consignes
 Dans cet espace (`/workspace`), vous pouvez sauver des objets, fichiers, dossiers... Ils seront **synchronisés** dans un stockage objet ovh, à **la clôture** de votre job.
