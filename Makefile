@@ -1,9 +1,10 @@
 export IMAGE_NAME=lab-nlp
 export APP_PATH := $(shell pwd)
-export VERSION := main#v0.5
+export VERSION := v0.7
 export USER := $(shell whoami)
 export NB_GPUS := 1
 export REGION := gra
+include ./artifacts
 # build locally the docker image
 build:
 	docker build -t $(IMAGE_NAME) .
