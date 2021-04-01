@@ -3,7 +3,7 @@ export APP_PATH := $(shell pwd)
 export VERSION := v0.5
 export USER := $(shell whoami)
 export NB_GPUS := 1
-
+export REGION := bhs
 # build locally the docker image
 build:
 	docker build -t $(IMAGE_NAME) .
@@ -14,5 +14,7 @@ deploy-job:
 	ovhai job run \
 		--gpu ${NB_GPUS} \
 		--name ${IMAGE_NAME}-${USER} \
-		--volume lab-nlp@bhs:/data:rw \
+		--label ${USER}\
+		--volume lab-nlp-data@${REGION}:/data:rw \
+		--volume lab-nlp-notebook@${REGION}:/workspace/notebook:rw \
 		ghcr.io/datalab-mi/${IMAGE_NAME}:${VERSION}
