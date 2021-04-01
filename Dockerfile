@@ -1,8 +1,12 @@
 FROM ovhcom/ai-training-pytorch:1.6.0
 LABEL maintainer="datalab-mi"
 
-RUN apt-get install -y make
-RUN apt-get install g++
+RUN apt update -y && \
+    apt install -y bash \
+                   build-essential \
+                   g++ && \
+    rm -rf /var/lib/apt/lists
+
 RUN wget https://github.com/facebookresearch/fastText/archive/v0.9.2.zip
 RUN unzip v0.9.2.zip
 WORKDIR fastText-0.9.2
