@@ -14,7 +14,7 @@ deploy-job:
 	ovhai job run \
 		--gpu ${NB_GPUS} \
 		--name ${IMAGE_NAME}-${USER} \
-		--label ${USER}\
+		--label user=${USER}\
 		--volume lab-nlp-data@${REGION}:/data:rw \
 		--volume lab-nlp-notebook@${REGION}:/workspace/notebook:rw \
 		ghcr.io/datalab-mi/${IMAGE_NAME}:${VERSION}
