@@ -8,4 +8,10 @@ Dans cet espace (`/workspace`), vous pouvez sauver des objets, fichiers, dossier
 
 Point de montage :
 - `/workspace/data` : contient les données d'entraînements, sorties de modèles...
-- `/workspace/notebooks` : contient les notebooks. Si vous souhaitez protéger votre notebook, placez le dans un dossier qui porte votre nom.
+- `/workspace/notebook` : contient les notebooks. Si vous souhaitez protéger votre notebook, placez le dans un dossier qui porte votre nom.
+
+
+# Références
+## NLI (Natural Language Inference)
+Étant donné 2 phrases, la tâche NLI consiste à décider si la première phrase entraîne la seconde, la contredit ou est neutre.
+Les datasets de réferences sont SNLI et MultiNLI.
