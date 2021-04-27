@@ -18,6 +18,11 @@ En tant qu'utilisateur:
 
 1. Lancer un job (= 1 container): `make deploy-job`
 
-2. Voir les logs et les jobs en cours [(docs)](https://docs.ovh.com/gb/en/ai-training/usage-client/). Par exemple, suivre le lien url de `ovhai job list`
+2. Voir les logs et les jobs en cours [(docs)](https://docs.ovh.com/gb/en/ai-training/usage-client/). Par exemple, suivre le lien url de `make data-upload SRC=mon.fichier DST=lab-nlp-data`
 
-3. Arrêter le job (Pour ne pas faire exploser la facturation) `ovhai job stop <id>`
+3. Pour lancer un script sans notebook : `make deploy-job command="python /workspace/code/translate_quora.py"`
+
+4. Pour transférer des données sur le bucket :
+`make data-upload SRC=my.file DST=bucket.name`
+
+5. Arrêter le job (Pour ne pas faire exploser la facturation) `ovhai job stop <id>`

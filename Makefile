@@ -32,3 +32,6 @@ list-job:
 jobid=$(grep -Po '"id":.*?[^\\]"' job.json |awk -F':' '{print $2}')
 open-job:
 	@echo $(jobid)
+
+data-upload:
+	ovhai data upload ${REGION} $(DST) $(SRC)
