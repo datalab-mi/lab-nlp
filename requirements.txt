@@ -6,5 +6,6 @@ sentence-transformers==1.0.3
 easynmt
 google
 protobuf
-datasets
-adaptnlp
+datasets>=1.0.0
+adaptnlp==0.2.2
+transformers-domain-adaptation==0.3.1
