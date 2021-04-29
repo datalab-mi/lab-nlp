@@ -1,6 +1,6 @@
 export IMAGE_NAME=lab-nlp
 export APP_PATH := $(shell pwd)
-export VERSION := v0.7
+export VERSION := v0.8
 export USER := $(shell whoami)
 export NB_GPUS := 2
 export REGION := gra
