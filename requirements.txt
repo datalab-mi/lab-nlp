@@ -1,11 +1,10 @@
 pandas>=1.2.0
 requests>=2.21.0
 pytest==5.1.1
-transformers==4.4.2
+transformers==4.2.0
 sentence-transformers==1.0.3
 easynmt
 google
 protobuf
-datasets>=1.0.0
-adaptnlp==0.2.2
+datasets==1.2.1
 transformers-domain-adaptation==0.3.1
