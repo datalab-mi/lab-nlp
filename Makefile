@@ -2,9 +2,14 @@ export IMAGE_NAME=lab-nlp
 export APP_PATH := $(shell pwd)
 export VERSION := v0.8.1
 export USER := $(shell whoami)
-export NB_GPUS := 2
-export REGION := gra
+export NB_GPUS := 0
+export NB_CPUS := 4
+export BUCKET_NAME := my-bucket
+export REGION := GRA
 dummy	:= $(shell touch artifacts)
+export notebookid := $(shell grep -oP '(?<={"id":")[^"]*' notebook.json)
+
+
 include ./artifacts
 # build locally the docker image
 build:
@@ -12,26 +17,29 @@ build:
 run-locally:build
 	docker run --rm -it -v ${APP_PATH}/group:/etc/group -v ${APP_PATH}/passwd:/etc/passwd --user=ovh:ovh $(IMAGE_NAME)
 
-# Deploy job to ovh
-deploy-job:
-	ovhai job run \
+# Deploy notebook to ovh
+deploy-notebook:
+	ovhai notebook run \
 		--gpu ${NB_GPUS} \
+		--cpu ${NB_CPUS} \
 		--name ${IMAGE_NAME}-${USER} \
 		--label user=${USER}\
-		--volume lab-nlp-data@${REGION}:/workspace/data:rw \
-		--volume lab-nlp-notebook@${REGION}:/workspace/notebook:rw \
-		--volume lab-nlp-code@${REGION}:/workspace/code:rw \
+		--volume ${BUCKET_NAME}@${REGION}:/workspace/data:rwd \
 		--output json \
-		ghcr.io/datalab-mi/${IMAGE_NAME}:${VERSION} > job.json \
+		 huggingface \
+		 jupyterlabcollaborative > notebook.json \
 		$(command)
 
-list-job:
-	ovhai job list
+list-notebook:
+	ovhai notebook list
 
-# open the job in notebook
-jobid=$(grep -Po '"id":.*?[^\\]"' job.json |awk -F':' '{print $2}')
-open-job:
-	@echo $(jobid)
+
+# open the notebook in notebook
+open-notebook:
+	@echo $(notebookid)
+delete-notebook:
+	ovhai notebook delete $(notebookid)
+
 
 data-upload:
 	ovhai data upload ${REGION} $(DST) $(SRC)
